@@ -20,6 +20,11 @@
     "@angular/router": "^15.2.0",
     "@angular/material": "^15.2.4",
     "@ng-bootstrap/ng-bootstrap": "^14.0.1",
+    "ngx-smart-popover": "^1.5.0",
+    "sweetalert2": "^11.7.3",
+    "@fortawesome/angular-fontawesome": "^0.12.1",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
