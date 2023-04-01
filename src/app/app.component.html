@@ -1,4 +1,9 @@
-<body class="theme-alternate">
-  <p>hi mom</p>
-  <router-outlet></router-outlet>
-</body>
+<div class="app-container flex-col">
+  <app-toolbar></app-toolbar>
+  <div class="content-container">
+    <div class="content">
+      <app-game-settings></app-game-settings>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

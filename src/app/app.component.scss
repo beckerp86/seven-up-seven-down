@@ -1,0 +1,18 @@
+.app-container {
+  height: 100%;
+
+  .toolbar {
+    flex: 0 1 auto;
+  }
+
+  .content-container {
+    display: flex;
+    flex: 1 1 auto;
+
+    .content {
+      padding: 20px;
+      flex: 1 1 auto;
+      align-self: stretch;
+    }
+  }
+}

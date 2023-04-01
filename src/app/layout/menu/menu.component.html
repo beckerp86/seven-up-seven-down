@@ -1,0 +1,15 @@
+<div>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>play_circle_outline</mat-icon>
+      <span>Start New Game</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>replay</mat-icon>
+      <span>Resume Game</span>
+    </button>
+  </mat-menu>
+</div>

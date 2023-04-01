@@ -9,7 +9,7 @@ export class Game {
   }
 
   settings: GameSettings;
-  rounds!: GameRound[];
+  rounds: GameRound[] = [];
 
   private currentRoundIndex: number = 0;
   get currentRound(): GameRound {
@@ -48,7 +48,7 @@ export class Game {
     for (let i = 0; i < 14; i++) {
       const roundNum: number = i + 1;
       const pastMidgame: boolean = roundNum > 7;
-      let cardsDealt: number = 0;
+      let cardsDealt: number;
 
       switch (this.settings.gameDirection) {
         case GameDirection.DownFirst: {
@@ -60,9 +60,14 @@ export class Game {
           break;
         }
         default:
-          break;
+          throw new Error('Settings.GameDirection unable to be resolved');
       }
-      const newRound = new GameRound(roundNum, cardsDealt);
+
+      const newRound = new GameRound(
+        roundNum,
+        cardsDealt,
+        this.settings.bidBonus,
+      );
       rounds.push(newRound);
     }
 
