@@ -10,7 +10,7 @@ export class Player {
   private _id: string;
   private _name: string;
 
-  constructor(name: string) {
+  constructor(name: string = '') {
     this._id = crypto.randomUUID();
     this._name = name;
   }

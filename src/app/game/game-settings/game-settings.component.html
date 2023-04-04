@@ -1,7 +1,7 @@
 <h2>Game Settings</h2>
-<div class="settings-form" [formGroup]="settingsForm">
+<div class="settings-form" [formGroup]="form">
   <div class="row">
-    <div class="col-4">
+    <div class="col-2">
       <h4>
         Game Direction
         <mat-icon
@@ -15,75 +15,91 @@
       <mat-form-field appearance="fill">
         <mat-label>Game Direction</mat-label>
         <mat-select formControlName="gameDirection">
-          <mat-option value="1">Up First</mat-option>
-          <mat-option value="2">Down First</mat-option>
+          <mat-option [value]="1">Up First</mat-option>
+          <mat-option [value]="2">Down First</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-2">
+      <h4>
+        Bid Bonus &nbsp;
+        <mat-icon
+          #bidBonusTT="matTooltip"
+          matTooltip="How many bonus points are awarded if a player takes exactly the amount of tricks they bid in a round without going over."
+          matTooltipPosition="above"
+          color="accent"
+          >info</mat-icon
+        >
+      </h4>
+      <mat-form-field>
+        <mat-label>Bid Bonus</mat-label>
+        <input matInput type="number" min="0" max="10" formControlName="bidBonus" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-3">
+      <h4>
+        Surprise Ending Mode
+        <mat-icon
+          #surpriseEndingTT="matTooltip"
+          matTooltip="The scores are hidden throughout gameplay until all rounds have been played. All scores and stats are shown when the game concludes, but not during gameplay."
+          matTooltipPosition="above"
+          color="accent"
+          >info</mat-icon
+        >
+      </h4>
+      <mat-form-field id="surpriseEndingField" appearance="fill">
+        <mat-label>Surprise Ending Mode</mat-label>
+        <mat-select formControlName="surpriseEndingMode">
+          <mat-option [value]="0"
+            >No, we like to keep track of scoring</mat-option
+          >
+          <mat-option [value]="1">Sure, surprise me at the end</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
   </div>
 
-  <div class="col-4">
-    <h4>
-      Bid Bonus &nbsp;
-      <mat-icon
-        #bidBonusTT="matTooltip"
-        matTooltip="How many bonus points are awarded if a player takes exactly the amount of tricks they bid in a round without going over."
-        matTooltipPosition="above"
-        color="accent"
-        >info</mat-icon
-      >
-    </h4>
-    <mat-form-field>
-      <mat-label>Bid Bonus</mat-label>
-      <input matInput type="number" min="0" max="10" />
-    </mat-form-field>
-  </div>
+  <div class="vertical-spacing"></div>
+  <mat-divider></mat-divider>
+  <div class="vertical-spacing"></div>
 
-  <div class="col-4">
-    <h4>
-      Surprise Ending Mode
-      <mat-icon
-        #surpriseEndingTT="matTooltip"
-        matTooltip="The scores are hidden throughout gameplay until all rounds have been played. All scores and stats are shown when the game concludes, but not during gameplay."
-        matTooltipPosition="above"
-        color="accent"
-        >info</mat-icon
-      >
-    </h4>
-    <mat-slide-toggle color="primary" formControlName="surpriseEndingMode">
-    </mat-slide-toggle>
-  </div>
-</div>
-<mat-divider></mat-divider>
+  <h2>Players</h2>
+  <ng-container class="player-form" formArrayName="players">
+    <ng-container *ngFor="let playerForm of players.controls; let i = index">
+      <div class="col-4 align-middle" [formGroupName]="i">
+        <mat-form-field>
+          <input
+            #nameInputs
+            matInput
+            formControlName="player"
+            minlength="1"
+            (keydown.enter)="addPlayer()" />
+        </mat-form-field>
+        <button
+          mat-mini-fab
+          color="warn"
+          class="delete-btn"
+          (click)="deletePlayer(i)">
+          <mat-icon class="delete-btn">delete_forever</mat-icon>
+        </button>
+      </div>
+    </ng-container>
 
-<h2>Players</h2>
-<div class="player-form flex-col" [formGroup]="playersForm">
-  <ng-container *ngFor="let player of players.controls; let i = index">
-    <div class="row">
-      <mat-form-field>
-        <input
-          matInput
-          formControlName="player"
-          [value]="player.value.name"
-          minlength="2" />
-      </mat-form-field>
-      <button
-        mat-mini-fab
-        color="warn"
-        class="delete-btn"
-        (click)="deletePlayer(i)">
-        <mat-icon class="delete-btn">delete_forever</mat-icon>
-      </button>
-    </div>
+    <button
+      *ngIf="isAddPlayerButtonShown"
+      mat-raised-button
+      color="accent"
+      (click)="addPlayer()">
+      <mat-icon>add</mat-icon> &nbsp; ADD PLAYER
+    </button>
   </ng-container>
-
-  <button class="col-2" mat-raised-button color="accent" (click)="addPlayer()">
-    <mat-icon>add</mat-icon> &nbsp; ADD PLAYER
-  </button>
 </div>
 
+<div class="vertical-spacing"></div>
 <mat-divider></mat-divider>
-<div class="row"></div>
+<div class="vertical-spacing"></div>
 
 <div class="start-game-button">
   <button

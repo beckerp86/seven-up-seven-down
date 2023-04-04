@@ -21,6 +21,11 @@ body {
   align-self: stretch;
 }
 
+.vertical-spacing {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .bold {
   font-weight: 700;
 }
@@ -34,5 +39,11 @@ body {
   pointer-events: none;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

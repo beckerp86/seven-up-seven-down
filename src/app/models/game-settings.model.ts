@@ -1,3 +1,5 @@
+import { Player } from './player-model';
+
 export class GameSettings {
   private _gameDirection: GameDirection;
   get gameDirection(): GameDirection {
@@ -14,14 +16,21 @@ export class GameSettings {
     return this._surpriseEndingMode;
   }
 
+  private _players: Player[];
+  get players(): Player[] {
+    return this._players;
+  }
+
   constructor(
     direction: GameDirection,
     bidBonus: number,
     surpriseEndingMode: boolean,
+    players: Player[],
   ) {
     this._gameDirection = direction;
     this._bidBonus = bidBonus;
     this._surpriseEndingMode = surpriseEndingMode;
+    this._players = players;
   }
 }
 

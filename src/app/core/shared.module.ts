@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FortAwesomeModule } from './fort-awesome.module';
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const sharedModules = [
   BrowserAnimationsModule,
@@ -14,7 +13,6 @@ const sharedModules = [
   FormsModule,
   FortAwesomeModule,
   MaterialModule,
-  NgbModule,
   ReactiveFormsModule,
 ];
 
